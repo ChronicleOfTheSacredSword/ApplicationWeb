@@ -103,7 +103,7 @@ function handleKeydown(e: KeyboardEvent) {
 // -------------------------
 function checkRandomMonster() {
   if (Math.random() <= 0.05) {
-    alert('⚔️ Un monstre apparaît !')
+    //alert('⚔️ Un monstre apparaît !')
   }
 }
 
