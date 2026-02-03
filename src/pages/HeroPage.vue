@@ -21,7 +21,7 @@ const id_user = ref(1);
 const heroes = ref([
   {
     id_user: 1,
-    id: 1,
+    id: 0,
     name: 'richard',
     heroClass: 'Barbarian',
     pv: '12',
@@ -32,7 +32,7 @@ const heroes = ref([
   },
   {
     id_user: 1,
-    id: 2,
+    id: 1,
     name: 'bruno',
     heroClass: 'Assassin',
     pv: '2',

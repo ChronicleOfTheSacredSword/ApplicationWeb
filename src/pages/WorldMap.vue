@@ -14,7 +14,7 @@ import HeroInfoMap from '../components/HeroInfoMap.vue';
 //TODO Récupérer Héros à afficher
 const hero = ref({
   id_user: 1,
-  id: 1,
+  id: 0,
   name: 'Richard',
   heroClass: 'Barbare',
   pv: '12',

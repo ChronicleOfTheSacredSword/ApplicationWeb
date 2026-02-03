@@ -17,6 +17,7 @@ import { NButton, NModal } from 'naive-ui';
 import { ref } from 'vue';
 import type Hero from 'src/interfaces/Hero';
 import InventoryModal from 'components/InventoryModal.vue';
+import type Item from 'src/interfaces/Item';
 
 const props = defineProps<{
   hero: Hero;
@@ -24,7 +25,7 @@ const props = defineProps<{
 
 const showModal = ref(false);
 
-function updateHeroStats(item) {
+function updateHeroStats(item: Item) {
   console.log(item);
 }
 </script>
