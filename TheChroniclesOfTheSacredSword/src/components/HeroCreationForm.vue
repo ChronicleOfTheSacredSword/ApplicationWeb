@@ -46,9 +46,7 @@ import { NButton, NCard, NForm, NFormItem, NInput, NInputNumber, NSelect } from 
 import { ref, watch } from 'vue';
 
 const props = defineProps(['id_user']);
-const emit = defineEmits<{
-  (e: 'close-modal'): void;
-}>();
+const emit = defineEmits(['close-modal']);
 
 const heroName = ref('');
 const customClass = ref('');

@@ -10,6 +10,7 @@ import GameMap from '../components/GameMap.vue';
 import { ref } from 'vue';
 import HeroInfoMap from '../components/HeroInfoMap.vue';
 
+
 //TODO Récupérer Héros à afficher
 const hero = ref({
   id_user: 1,

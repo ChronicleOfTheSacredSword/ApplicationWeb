@@ -1,30 +1,33 @@
-<script setup lang="ts">
-interface Hero {
-  id_user?: number
-  id?: number
-  name: string
-  heroClass: string
-  pv: string
-  atk: string
-  lvl: string
-  xp: string
-  gold: string
-}
-
-const props = defineProps<{
-  hero: Hero
-}>()
-</script>
-
 <template>
   <div class="entry">
-    <p><b>Nom</b> : {{ hero.name }}</p>
-    <p><b>PV</b> : {{ hero.pv }}</p>
-    <p><b>ATK</b> : {{ hero.atk }}</p>
-    <p><b>LVL</b> : {{ hero.lvl }}</p>
-    <p><b>GOLD</b> : {{ hero.gold }}</p>
+    <p><b>Nom</b> : {{ props.hero.name }}</p>
+    <p><b>PV</b> : {{ props.hero.pv }}</p>
+    <p><b>ATK</b> : {{ props.hero.atk }}</p>
+    <p><b>LVL</b> : {{ props.hero.lvl }}</p>
+    <p><b>GOLD</b> : {{ props.hero.gold }}</p>
+    <n-modal v-model:show="showModal">
+      <InventoryModal :id="props.hero.id" @update-stats="updateHeroStats" />
+    </n-modal>
+    <n-button type="info" @click="showModal = true">Inventory</n-button>
   </div>
 </template>
+
+<script setup lang="ts">
+import { NButton, NModal } from 'naive-ui';
+import { ref } from 'vue';
+import type Hero from 'src/interfaces/Hero';
+import InventoryModal from 'components/InventoryModal.vue';
+
+const props = defineProps<{
+  hero: Hero;
+}>();
+
+const showModal = ref(false);
+
+function updateHeroStats(item) {
+  console.log(item);
+}
+</script>
 
 <style scoped>
 /* HeroEntry container styling */
@@ -37,7 +40,7 @@ const props = defineProps<{
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
-  font-family: "Adwaita Mono";
+  font-family: 'Adwaita Mono';
 }
 
 /* Hero information layout */

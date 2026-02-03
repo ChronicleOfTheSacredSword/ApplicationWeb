@@ -12,22 +12,11 @@
 </template>
 
 <script setup lang="ts">
-interface Hero {
-  id_user?: number;
-  id?: number;
-  name: string;
-  heroClass: string;
-  pv: string;
-  atk: string;
-  lvl: string;
-  xp: string;
-  gold: string;
-}
+import type Hero from 'src/interfaces/Hero';
 
 const props = defineProps<{
   hero: Hero;
 }>();
-
 </script>
 
 <style scoped>
