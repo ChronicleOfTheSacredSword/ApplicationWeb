@@ -9,6 +9,20 @@
 
 <style scoped>
 .title-frame {
-    text-align: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: flex-start;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+h2 {
+  font-size: 2rem;
+  margin: 0;
 }
 </style>
