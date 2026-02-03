@@ -71,26 +71,48 @@ function toggleMode() {
     passwordConfirmed.value = ""
 }
 
-function submit() {
+async function submit() {
+    const user = {
+        name: userName.value,
+        password: password.value
+    }
+
     if (isNewUser.value) {
         if (!isPasswordValid.value) return
-        createUser()
+        await createUser(user);
     } else {
-        loginUser()
+        await loginUser(user);
     }
 }
 
-function createUser() {
-    console.log("Creating user:", userName.value)
-    // TODO: API call to create user
+async function createUser(user: any) {
+    console.log("Creating user:", user)
+    
+    const newUser = await fetch("http://localhost:5000/user",{
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(user)
+    })
+
+    console.log("newUser", newUser);
+
     isNewUser.value = false
 }
 
-function loginUser() {
-    console.log("Logging in:", userName.value)
+async function loginUser(user: any) {
+    console.log("Login user:", user)
     
-    // TODO: API call to log in user
-    router.push("/hero")
+    const tokenResponse = await fetch("http://localhost:5001/login",{
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(user)
+    })
+
+    const token = await tokenResponse.json();
+
+    console.log("token", token);
+
+    router.push("/hero");
 }
 
 const isPasswordValid = computed(() => {
