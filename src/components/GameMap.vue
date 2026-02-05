@@ -39,8 +39,10 @@ const PLAYER_SIZE = 40
 // -------------------------
 // PLAYER STATE
 // -------------------------
-const playerRow = ref(0)
-const playerCol = ref(0)
+const playerRow = ref(0);
+const playerCol = ref(0);
+let lastMoveTime = 0;
+const MOVE_DELAY = 200;
 
 const playerCellId = computed(() => playerRow.value * COLS + playerCol.value + 1)
 const playerStyle = computed(() => ({
@@ -60,6 +62,9 @@ function setPlayerFromIdBox(id_box: number) {
 // MOVEMENT
 // -------------------------
 function move(direction: Direction) {
+  const now = Date.now();
+  if (now - lastMoveTime < MOVE_DELAY) return;
+
   switch (direction) {
     case 'up':
       playerRow.value = (playerRow.value - 1 + ROWS) % ROWS
@@ -74,7 +79,8 @@ function move(direction: Direction) {
       playerCol.value = (playerCol.value + 1) % COLS
       break
   }
-  checkRandomMonster()
+  lastMoveTime = now;
+  checkRandomMonster();
 }
 
 function handleKeydown(e: KeyboardEvent) {
