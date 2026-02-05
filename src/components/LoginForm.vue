@@ -42,7 +42,9 @@
                     <button type="button" @click="toggleMode">Create one</button>
                 </span>
             </p>
-
+            <p v-if="errorMessage" class="error-message">
+                {{ errorMessage }}
+            </p>
             <button
                 type="submit"
                 class="submit"
@@ -57,6 +59,9 @@
 <script setup lang="ts">
 import { ref, computed } from "vue"
 import { useRouter } from "vue-router"
+import { useAuthStore } from 'src/stores/auth'
+
+const authStore = useAuthStore()
 
 const router = useRouter();
 
@@ -64,55 +69,80 @@ const isNewUser = ref(false);
 const userName = ref("");
 const password = ref("");
 const passwordConfirmed = ref("");
+const errorMessage = ref("");
 
 function toggleMode() {
     isNewUser.value = !isNewUser.value
     password.value = ""
     passwordConfirmed.value = ""
+    errorMessage.value = ""
 }
 
 async function submit() {
+    errorMessage.value = ""
+
     const user = {
         name: userName.value,
         password: password.value
     }
 
-    if (isNewUser.value) {
-        if (!isPasswordValid.value) return
-        await createUser(user);
-    } else {
-        await loginUser(user);
+    try {
+        if (isNewUser.value) {
+            if (!isPasswordValid.value) return
+            await createUser(user)
+        } else {
+            await loginUser(user)
+        }
+    } catch (err: any) {
+        errorMessage.value = err.message || "Something went wrong"
+    } finally {
+        password.value = ""
+        passwordConfirmed.value = ""
+        userName.value = ""
     }
 }
 
 async function createUser(user: any) {
-    console.log("Creating user:", user)
+    try{
+        console.log("Creating user:", user)
     
-    const newUser = await fetch("http://localhost:5000/user",{
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(user)
-    })
+        const newUserResponse = await fetch("http://localhost:5000/user",{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(user)
+        })
 
-    console.log("newUser", newUser);
+        const newUser = await newUserResponse.json();
 
-    isNewUser.value = false
+        console.log("newUser", newUser);
+        authStore.setUser(newUser);
+
+        isNewUser.value = false
+    } catch(error) {
+        throw new Error("Failed to create account")
+    }
 }
 
 async function loginUser(user: any) {
-    console.log("Login user:", user)
+    try{
+        console.log("Login user:", user)
     
-    const tokenResponse = await fetch("http://localhost:5001/login",{
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(user)
-    })
+        const tokenResponse = await fetch("http://localhost:5001/login",{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(user)
+        })
 
-    const token = await tokenResponse.json();
+        const token = await tokenResponse.json();
 
-    console.log("token", token);
+        console.log("token", token);
+        authStore.setAccessToken(token.access);
+        authStore.setRefreshToken(token.refresh);
 
-    router.push("/hero");
+        await router.push("/hero");
+    } catch(error) {
+        throw new Error("Failed to authentificate your account")
+    } 
 }
 
 const isPasswordValid = computed(() => {
@@ -194,4 +224,14 @@ input.invalid {
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+.error-message {
+    color: #d93025;
+    background: #fdecea;
+    border: 1px solid #f5c2c0;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
 </style>
