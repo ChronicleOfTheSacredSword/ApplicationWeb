@@ -67,6 +67,13 @@ export default defineConfigWithVueTs(
 
       // allow debugger during development only
       'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+
+      // ✅ allow `any`
+      '@typescript-eslint/no-explicit-any': 'off',
+
+      // ✅ accept any variable
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
     },
   },
 

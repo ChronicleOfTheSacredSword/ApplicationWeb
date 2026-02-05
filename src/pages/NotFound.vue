@@ -12,8 +12,8 @@ import { useRouter } from "vue-router"
 
 const router = useRouter()
 
-function goHome() {
-    router.push("/") // Navigate back to login page
+async function goHome() {
+    await router.push("/");
 }
 </script>
 
