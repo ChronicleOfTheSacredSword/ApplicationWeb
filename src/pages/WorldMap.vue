@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app" v-if="save.id !== undefined">
     <HeroInfoMap :hero="hero" />
     <GameMap :save="save" />
   </div>
@@ -7,28 +7,38 @@
 
 <script setup lang="ts">
 import GameMap from '../components/GameMap.vue';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import HeroInfoMap from '../components/HeroInfoMap.vue';
+import { useAuthStore } from 'stores/auth';
+import Hero from 'src/interfaces/Hero';
+const authStore = useAuthStore();
 
+const idHero = ref(null);
 
-//TODO Récupérer Héros à afficher
-const hero = ref({
-  id_user: 1,
-  id: 0,
-  name: 'Richard',
-  heroClass: 'Barbare',
-  pv: '12',
-  atk: '10',
-  lvl: '1',
-  xp: '250',
-  gold: '500',
-});
+const hero:any = ref({});
 
-//TODO: récupérer une sauvegarde à charger
-const save = ref({
-  id: 1,
-  id_map: 1,
-  id_box: 36,
+const save:any = ref({});
+
+onMounted(() => {
+  idHero.value = authStore.getHero;
+  //TODO Récupérer Héros à afficher
+  hero.value = {
+    id_user: 1,
+    id: 0,
+    name: 'Richard',
+    heroClass: 'Barbare',
+    pv: '12',
+    atk: '10',
+    lvl: '1',
+    xp: '250',
+    gold: '500',
+  };
+  //TODO: récupérer une sauvegarde à charger
+  save.value = {
+    id: 1,
+    id_map: 1,
+    id_box: 36,
+  };
 });
 </script>
 

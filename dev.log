@@ -1,0 +1,209 @@
+npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+npm warn Unknown project config "resolution-mode". This will stop working in the next major version of npm.
+
+> thechroniclesofthesacredsword@0.0.1 dev
+> quasar dev
+
+
+ .d88888b.
+d88P" "Y88b
+888     888
+888     888 888  888  8888b.  .d8888b   8888b.  888d888
+888     888 888  888     "88b 88K          "88b 888P"
+888 Y8b 888 888  888 .d888888 "Y8888b. .d888888 888
+Y88b.Y8b88P Y88b 888 888  888      X88 888  888 888
+ "Y888888"   "Y88888 "Y888888  88888P' "Y888888 888
+       Y8b
+
+ App • Using quasar.config.ts in "ts" format
+ App • Using .env files: .env
+
+ » Reported at............ 05/02/2026 17:58:11
+ » App dir................ /home/val/Documents/Microservices/DEPLOY/ApplicationWeb
+ » App URL................ http://localhost:9000/
+                           http://192.168.1.57:9000/
+                           http://172.18.0.1:9000/
+ » Dev mode............... spa
+ » Pkg quasar............. v2.18.6
+ » Pkg @quasar/app-vite... v2.4.0
+ » Browser target......... es2022|firefox115|chrome115|safari14
+
+
+[1m[30m[101m ERROR(vue-tsc) [49m[39m[22m Property 'id' does not exist on type 'never'.
+[1m[30m[106m FILE [49m[39m[22m /home/val/Documents/Microservices/DEPLOY/ApplicationWeb/src/components/InventoryModal.vue:[33m12[39m:[33m61[39m
+
+  [0m [90m 10 |[39m     [33m<[39m[33mn[39m[33m-[39mdivider [33m/[39m[33m>[39m
+   [90m 11 |[39m     [33m<[39m[33mul[39m v[33m-[39m[36mif[39m[33m=[39m[32m"inventoryLoaded"[39m[32m">[39m
+  [31m[1m>[22m[39m[90m 12 |[39m       [33m<[39m[33mli[39m v[33m-[39m[36mfor[39m[33m=[39m[32m"item in inventory"[39m [36mclass[39m[33m=[39m[32m"item"[39m [33m:[39mkey[33m=[39m[32m"item.id"[39m[33m>[39m
+   [90m    |[39m                                                             [31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 13 |[39m         [33m<[39m[33mp[39m[33m>[39m
+   [90m 14 |[39m           [33m<[39m[33mstrong[39m[33m>[39m{{ item[33m.[39mname }}[33m<[39m[33m/[39m[33mstrong[39m[33m>[39m
+   [90m 15 |[39m         [33m<[39m[33m/[39m[33mp[39m[33m>[39m[0m
+
+[1m[30m[101m ERROR(vue-tsc) [49m[39m[22m Property 'name' does not exist on type 'never'.
+[1m[30m[106m FILE [49m[39m[22m /home/val/Documents/Microservices/DEPLOY/ApplicationWeb/src/components/InventoryModal.vue:[33m14[39m:[33m27[39m
+
+  [0m [90m 12 |[39m       [33m<[39m[33mli[39m v[33m-[39m[36mfor[39m[33m=[39m[32m"item in inventory"[39m [36mclass[39m[33m=[39m[32m"item"[39m [33m:[39mkey[33m=[39m[32m"item.id"[39m[33m>[39m
+   [90m 13 |[39m         [33m<[39m[33mp[39m[33m>[39m
+  [31m[1m>[22m[39m[90m 14 |[39m           [33m<[39m[33mstrong[39m[33m>[39m{{ item[33m.[39mname }}[33m<[39m[33m/[39m[33mstrong[39m[33m>[39m
+   [90m    |[39m                           [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 15 |[39m         [33m<[39m[33m/[39m[33mp[39m[33m>[39m
+   [90m 16 |[39m         [33m<[39m[33mp[39m[33m>[39m
+   [90m 17 |[39m           [33mGives[39m [33m<[39m[33mstrong[39m[33m>[39m{{ item[33m.[39mquantity }}[33m<[39m[33m/[39m[33mstrong[39m[33m>[39m amount [36mof[39m [33m<[39m[33mstrong[39m[33m>[39m{{ item[33m.[39munit }}[33m<[39m[33m/[39m[33mstrong[39m[33m>[39m[0m
+
+[1m[30m[101m ERROR(vue-tsc) [49m[39m[22m Property 'quantity' does not exist on type 'never'.
+[1m[30m[106m FILE [49m[39m[22m /home/val/Documents/Microservices/DEPLOY/ApplicationWeb/src/components/InventoryModal.vue:[33m17[39m:[33m33[39m
+
+  [0m [90m 15 |[39m         [33m<[39m[33m/[39m[33mp[39m[33m>[39m
+   [90m 16 |[39m         [33m<[39m[33mp[39m[33m>[39m
+  [31m[1m>[22m[39m[90m 17 |[39m           [33mGives[39m [33m<[39m[33mstrong[39m[33m>[39m{{ item[33m.[39mquantity }}[33m<[39m[33m/[39m[33mstrong[39m[33m>[39m amount [36mof[39m [33m<[39m[33mstrong[39m[33m>[39m{{ item[33m.[39munit }}[33m<[39m[33m/[39m[33mstrong[39m[33m>[39m
+   [90m    |[39m                                 [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 18 |[39m         [33m<[39m[33m/[39m[33mp[39m[33m>[39m
+   [90m 19 |[39m         [33m<[39m[33mp[39m[33m>[39mx{{ item[33m.[39mamount }}[33m<[39m[33m/[39m[33mp[39m[33m>[39m
+   [90m 20 |[39m         [33m<[39m[33mn[39m[33m-[39mbutton [33m@[39mclick[33m=[39m[32m"useItem(item)"[39m[33m>[39m[33mUse[39m[33m<[39m[33m/[39m[33mn[39m[33m-[39mbutton[33m>[39m[0m
+
+[1m[30m[101m ERROR(vue-tsc) [49m[39m[22m Property 'unit' does not exist on type 'never'.
+[1m[30m[106m FILE [49m[39m[22m /home/val/Documents/Microservices/DEPLOY/ApplicationWeb/src/components/InventoryModal.vue:[33m17[39m:[33m80[39m
+
+  [0m [90m 15 |[39m         [33m<[39m[33m/[39m[33mp[39m[33m>[39m
+   [90m 16 |[39m         [33m<[39m[33mp[39m[33m>[39m
+  [31m[1m>[22m[39m[90m 17 |[39m           [33mGives[39m [33m<[39m[33mstrong[39m[33m>[39m{{ item[33m.[39mquantity }}[33m<[39m[33m/[39m[33mstrong[39m[33m>[39m amount [36mof[39m [33m<[39m[33mstrong[39m[33m>[39m{{ item[33m.[39munit }}[33m<[39m[33m/[39m[33mstrong[39m[33m>[39m
+   [90m    |[39m                                                                                [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 18 |[39m         [33m<[39m[33m/[39m[33mp[39m[33m>[39m
+   [90m 19 |[39m         [33m<[39m[33mp[39m[33m>[39mx{{ item[33m.[39mamount }}[33m<[39m[33m/[39m[33mp[39m[33m>[39m
+   [90m 20 |[39m         [33m<[39m[33mn[39m[33m-[39mbutton [33m@[39mclick[33m=[39m[32m"useItem(item)"[39m[33m>[39m[33mUse[39m[33m<[39m[33m/[39m[33mn[39m[33m-[39mbutton[33m>[39m[0m
+
+[1m[30m[101m ERROR(vue-tsc) [49m[39m[22m Property 'amount' does not exist on type 'never'.
+[1m[30m[106m FILE [49m[39m[22m /home/val/Documents/Microservices/DEPLOY/ApplicationWeb/src/components/InventoryModal.vue:[33m19[39m:[33m21[39m
+
+  [0m [90m 17 |[39m           [33mGives[39m [33m<[39m[33mstrong[39m[33m>[39m{{ item[33m.[39mquantity }}[33m<[39m[33m/[39m[33mstrong[39m[33m>[39m amount [36mof[39m [33m<[39m[33mstrong[39m[33m>[39m{{ item[33m.[39munit }}[33m<[39m[33m/[39m[33mstrong[39m[33m>[39m
+   [90m 18 |[39m         [33m<[39m[33m/[39m[33mp[39m[33m>[39m
+  [31m[1m>[22m[39m[90m 19 |[39m         [33m<[39m[33mp[39m[33m>[39mx{{ item[33m.[39mamount }}[33m<[39m[33m/[39m[33mp[39m[33m>[39m
+   [90m    |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 20 |[39m         [33m<[39m[33mn[39m[33m-[39mbutton [33m@[39mclick[33m=[39m[32m"useItem(item)"[39m[33m>[39m[33mUse[39m[33m<[39m[33m/[39m[33mn[39m[33m-[39mbutton[33m>[39m
+   [90m 21 |[39m       [33m<[39m[33m/[39m[33mli[39m[33m>[39m
+   [90m 22 |[39m     [33m<[39m[33m/[39m[33mul[39m[33m>[39m[0m
+
+[1m[30m[101m ERROR(vue-tsc) [49m[39m[22m Argument of type 'Item' is not assignable to parameter of type 'never'.
+[1m[30m[106m FILE [49m[39m[22m /home/val/Documents/Microservices/DEPLOY/ApplicationWeb/src/components/InventoryModal.vue:[33m40[39m:[33m50[39m
+
+  [0m [90m 38 |[39m
+   [90m 39 |[39m   [36mif[39m (choice [33m&&[39m item) {
+  [31m[1m>[22m[39m[90m 40 |[39m     [36mconst[39m index[33m:[39mnumber [33m=[39m inventory[33m.[39mvalue[33m.[39mindexOf(item)[33m;[39m
+   [90m    |[39m                                                  [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 41 |[39m     item[33m.[39mamount [33m=[39m item[33m.[39mamount [33m-[39m [35m1[39m[33m;[39m
+   [90m 42 |[39m     console[33m.[39mlog(item)[33m;[39m
+   [90m 43 |[39m     [36mif[39m (item[33m.[39mamount [33m>[39m [35m0[39m) {[0m
+
+[1m[30m[101m ERROR(vue-tsc) [49m[39m[22m Object is possibly 'undefined'.
+[1m[30m[106m FILE [49m[39m[22m /home/val/Documents/Microservices/DEPLOY/ApplicationWeb/src/components/InventoryModal.vue:[33m44[39m:[33m7[39m
+
+  [0m [90m 42 |[39m     console[33m.[39mlog(item)[33m;[39m
+   [90m 43 |[39m     [36mif[39m (item[33m.[39mamount [33m>[39m [35m0[39m) {
+  [31m[1m>[22m[39m[90m 44 |[39m       inventory[33m.[39mvalue[index][33m.[39mamount [33m=[39m item[33m.[39mamount[33m;[39m
+   [90m    |[39m       [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 45 |[39m       [36mawait[39m fetch([32m"http://localhost:5005/inventory"[39m[33m,[39m {
+   [90m 46 |[39m         method[33m:[39m [32m"PUT"[39m[33m,[39m
+   [90m 47 |[39m         headers[33m:[39m {[32m'Content-Type'[39m[33m:[39m [32m'application/json'[39m}[33m,[39m[0m
+
+[1m[30m[101m ERROR(vue-tsc) [49m[39m[22m Module '"*.vue"' has no exported member 'EssentialLinkProps'. Did you mean to use 'import EssentialLinkProps from "*.vue"' instead?
+[1m[30m[106m FILE [49m[39m[22m /home/val/Documents/Microservices/DEPLOY/ApplicationWeb/src/layouts/MainLayout.vue:[33m29[39m:[33m30[39m
+
+  [0m [90m 27 |[39m [33m<[39m[33mscript[39m setup lang[33m=[39m[32m"ts"[39m[33m>[39m
+   [90m 28 |[39m [36mimport[39m { ref } [36mfrom[39m [32m'vue'[39m[33m;[39m
+  [31m[1m>[22m[39m[90m 29 |[39m [36mimport[39m [33mEssentialLink[39m[33m,[39m { type [33mEssentialLinkProps[39m } [36mfrom[39m [32m'components/EssentialLink.vue'[39m[33m;[39m
+   [90m    |[39m                              [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 30 |[39m
+   [90m 31 |[39m [36mconst[39m linksList[33m:[39m [33mEssentialLinkProps[39m[] [33m=[39m [
+   [90m 32 |[39m   {[0m
+
+[vue-tsc] Found 8 errors. Watching for file changes.
+[1m[30m[101m ERROR(ESLint) [49m[39m[22m Parsing error: missing-whitespace-between-attributes. (vue/no-parsing-error)
+[1m[30m[106m FILE [49m[39m[22m /home/val/Documents/Microservices/DEPLOY/ApplicationWeb/src/components/InventoryModal.vue:[33m11[39m:[33m31[39m
+
+  [0m[0m
+
+[1m[30m[101m ERROR(ESLint) [49m[39m[22m Parsing error: unexpected-character-in-attribute-name. (vue/no-parsing-error)
+[1m[30m[106m FILE [49m[39m[22m /home/val/Documents/Microservices/DEPLOY/ApplicationWeb/src/components/InventoryModal.vue:[33m11[39m:[33m31[39m
+
+  [0m[0m
+
+[1m[30m[101m ERROR(ESLint) [49m[39m[22m Attribute name " is not valid. (vue/valid-attribute-name)
+[1m[30m[106m FILE [49m[39m[22m /home/val/Documents/Microservices/DEPLOY/ApplicationWeb/src/components/InventoryModal.vue:[33m11[39m:[33m31[39m
+
+  [0m [90m  9 |[39m   [33m>[39m
+   [90m 10 |[39m     [33m<[39m[33mn[39m[33m-[39mdivider [33m/[39m[33m>[39m
+  [31m[1m>[22m[39m[90m 11 |[39m     [33m<[39m[33mul[39m v[33m-[39m[36mif[39m[33m=[39m[32m"inventoryLoaded"[39m[32m">[39m
+   [90m    |[39m                               [31m[1m^[22m[39m
+   [90m 12 |[39m       [33m<[39m[33mli[39m v[33m-[39m[36mfor[39m[33m=[39m[32m"item in inventory"[39m [36mclass[39m[33m=[39m[32m"item"[39m [33m:[39mkey[33m=[39m[32m"item.id"[39m[33m>[39m
+   [90m 13 |[39m         [33m<[39m[33mp[39m[33m>[39m
+   [90m 14 |[39m           [33m<[39m[33mstrong[39m[33m>[39m{{ item[33m.[39mname }}[33m<[39m[33m/[39m[33mstrong[39m[33m>[39m[0m
+
+[1m[30m[101m ERROR(ESLint) [49m[39m[22m All imports in the declaration are only used as types. Use `import type`. (@typescript-eslint/consistent-type-imports)
+[1m[30m[106m FILE [49m[39m[22m /home/val/Documents/Microservices/DEPLOY/ApplicationWeb/src/components/InventoryModal.vue:[33m29[39m:[33m1[39m
+
+  [0m [90m 27 |[39m [36mimport[39m { [33mNButton[39m[33m,[39m [33mNCard[39m[33m,[39m [33mNDivider[39m } [36mfrom[39m [32m'naive-ui'[39m[33m;[39m
+   [90m 28 |[39m [36mimport[39m { onMounted[33m,[39m ref } [36mfrom[39m [32m'vue'[39m[33m;[39m
+  [31m[1m>[22m[39m[90m 29 |[39m [36mimport[39m [33mItem[39m [36mfrom[39m [32m'src/interfaces/Item'[39m[33m;[39m
+   [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 30 |[39m
+   [90m 31 |[39m [36mconst[39m props [33m=[39m defineProps([[32m'id'[39m])[33m;[39m
+   [90m 32 |[39m [36mconst[39m emit [33m=[39m defineEmits([[32m'update-stats'[39m])[33m;[39m[0m
+
+[1m[30m[101m ERROR(ESLint) [49m[39m[22m 'inventory' is never reassigned. Use 'const' instead. (prefer-const)
+[1m[30m[106m FILE [49m[39m[22m /home/val/Documents/Microservices/DEPLOY/ApplicationWeb/src/components/InventoryModal.vue:[33m33[39m:[33m5[39m
+
+  [0m [90m 31 |[39m [36mconst[39m props [33m=[39m defineProps([[32m'id'[39m])[33m;[39m
+   [90m 32 |[39m [36mconst[39m emit [33m=[39m defineEmits([[32m'update-stats'[39m])[33m;[39m
+  [31m[1m>[22m[39m[90m 33 |[39m [36mlet[39m inventory [33m=[39m ref([])
+   [90m    |[39m     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 34 |[39m [36mconst[39m inventoryLoaded [33m=[39m ref([36mfalse[39m)[33m;[39m
+   [90m 35 |[39m
+   [90m 36 |[39m [36masync[39m [36mfunction[39m useItem(item[33m:[39m [33mItem[39m) {[0m
+
+[1m[30m[101m ERROR(ESLint) [49m[39m[22m Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+[1m[30m[106m FILE [49m[39m[22m /home/val/Documents/Microservices/DEPLOY/ApplicationWeb/src/components/LoginForm.vue:[33m88[39m:[33m33[39m
+
+  [0m [90m 86 |[39m }
+   [90m 87 |[39m
+  [31m[1m>[22m[39m[90m 88 |[39m [36masync[39m [36mfunction[39m createUser(user[33m:[39m any) {
+   [90m    |[39m                                 [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 89 |[39m     console[33m.[39mlog([32m"Creating user:"[39m[33m,[39m user)
+   [90m 90 |[39m     
+   [90m 91 |[39m     [36mconst[39m newUser [33m=[39m [36mawait[39m fetch([32m"http://localhost:5000/user"[39m[33m,[39m{[0m
+
+[1m[30m[101m ERROR(ESLint) [49m[39m[22m Unexpected any. Specify a different type. (@typescript-eslint/no-explicit-any)
+[1m[30m[106m FILE [49m[39m[22m /home/val/Documents/Microservices/DEPLOY/ApplicationWeb/src/components/LoginForm.vue:[33m102[39m:[33m32[39m
+
+  [0m [90m 100 |[39m }
+   [90m 101 |[39m
+  [31m[1m>[22m[39m[90m 102 |[39m [36masync[39m [36mfunction[39m loginUser(user[33m:[39m any) {
+   [90m     |[39m                                [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 103 |[39m     console[33m.[39mlog([32m"Login user:"[39m[33m,[39m user)
+   [90m 104 |[39m     
+   [90m 105 |[39m     [36mconst[39m tokenResponse [33m=[39m [36mawait[39m fetch([32m"http://localhost:5001/login"[39m[33m,[39m{[0m
+
+[1m[30m[101m ERROR(ESLint) [49m[39m[22m Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator. (@typescript-eslint/no-floating-promises)
+[1m[30m[106m FILE [49m[39m[22m /home/val/Documents/Microservices/DEPLOY/ApplicationWeb/src/components/LoginForm.vue:[33m115[39m:[33m5[39m
+
+  [0m [90m 113 |[39m     console[33m.[39mlog([32m"token"[39m[33m,[39m token)[33m;[39m
+   [90m 114 |[39m
+  [31m[1m>[22m[39m[90m 115 |[39m     router[33m.[39mpush([32m"/hero"[39m)[33m;[39m
+   [90m     |[39m     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 116 |[39m }
+   [90m 117 |[39m
+   [90m 118 |[39m [36mconst[39m isPasswordValid [33m=[39m computed(() [33m=>[39m {[0m
+
+[1m[30m[101m ERROR(ESLint) [49m[39m[22m Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator. (@typescript-eslint/no-floating-promises)
+[1m[30m[106m FILE [49m[39m[22m /home/val/Documents/Microservices/DEPLOY/ApplicationWeb/src/pages/NotFound.vue:[33m16[39m:[33m5[39m
+
+  [0m [90m 14 |[39m
+   [90m 15 |[39m [36mfunction[39m goHome() {
+  [31m[1m>[22m[39m[90m 16 |[39m     router[33m.[39mpush([32m"/"[39m) [90m// Navigate back to login page[39m
+   [90m    |[39m     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 17 |[39m }
+   [90m 18 |[39m [33m<[39m[33m/[39m[33mscript[39m[33m>[39m
+   [90m 19 |[39m[0m
+
+[31m[ESLint] Found 9 errors and 0 warning[39m

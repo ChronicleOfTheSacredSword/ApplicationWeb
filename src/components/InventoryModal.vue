@@ -20,6 +20,7 @@
         <n-button @click="useItem(item)">Use</n-button>
       </li>
     </ul>
+    <p v-show="inventory.length === 0">You have no items in your inventory.</p>
   </n-card>
 </template>
 

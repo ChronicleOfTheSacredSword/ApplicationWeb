@@ -20,10 +20,9 @@ const routes = [
     component: HeroPage,
   },
   {
-    path: '/worldmap/:id',
+    path: '/worldmap',
     name: 'WorldMap',
-    component: WorldMap,
-    props: true
+    component: WorldMap
   },
   {
     path: '/:pathMatch(.*)*',

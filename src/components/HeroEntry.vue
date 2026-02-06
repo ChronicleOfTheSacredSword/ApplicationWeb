@@ -1,5 +1,5 @@
 <template>
-  <router-link class="entry" :to="{ name: 'WorldMap', params: { id: props.hero.id } }">
+  <div class="entry" @click="goToSave">
     <h3>
       <strong>{{ hero.name }}</strong>
     </h3>
@@ -8,15 +8,26 @@
     <h3>{{ hero.lvl }}</h3>
     <h3>{{ hero.xp }}</h3>
     <h3>{{ hero.gold }}</h3>
-  </router-link>
+  </div>
 </template>
 
 <script setup lang="ts">
 import type Hero from 'src/interfaces/Hero';
+import { useAuthStore } from 'stores/auth';
+import { useRouter } from 'vue-router';
 
+const authStore = useAuthStore();
+const router = useRouter();
+
+// :to="{ name: 'WorldMap', params: { id: props.hero.id } }"
 const props = defineProps<{
   hero: Hero;
 }>();
+
+async function goToSave() {
+  authStore.setHero(props.hero.id);
+  await router.push('/worldmap');
+}
 </script>
 
 <style scoped>

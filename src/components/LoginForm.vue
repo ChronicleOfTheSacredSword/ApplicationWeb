@@ -62,7 +62,6 @@ import { useRouter } from "vue-router"
 import { useAuthStore } from 'src/stores/auth'
 
 const authStore = useAuthStore()
-
 const router = useRouter();
 
 const isNewUser = ref(false);
@@ -105,7 +104,7 @@ async function submit() {
 async function createUser(user: any) {
     try{
         console.log("Creating user:", user)
-    
+
         const newUserResponse = await fetch("http://localhost:5000/user",{
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -126,7 +125,7 @@ async function createUser(user: any) {
 async function loginUser(user: any) {
     try{
         console.log("Login user:", user)
-    
+
         const tokenResponse = await fetch("http://localhost:5001/login",{
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -142,7 +141,7 @@ async function loginUser(user: any) {
         await router.push("/hero");
     } catch(error) {
         throw new Error("Failed to authentificate your account")
-    } 
+    }
 }
 
 const isPasswordValid = computed(() => {
