@@ -58,7 +58,7 @@ const pv = ref(1);
 const gold = ref(0);
 
 const classValue = ref(null);
-let options = [
+const options = [
   {
     label: 'Classe personnalisée',
     value: '0',
@@ -79,7 +79,7 @@ watch(classValue, (newValue) => {
 
 async function addHero() {
   const idUser = await authStore.getUser;
-  const heroClass: number = Number.parseInt(classValue.value);
+  const heroClass: number = parseInt(classValue.value ?? "0", 10);
   if (classValue.value === '0') {
     const response = await fetch('http://localhost:5008/class', {
       method: 'POST',
@@ -127,7 +127,6 @@ onMounted(async () => {
       'Content-Type': 'application/json',
     }),
   }).then((res) => res.json());
-  console.log(response);
   for (const item of response) {
     options.push({
       label: item.name,

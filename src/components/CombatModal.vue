@@ -11,7 +11,7 @@
         <div class="fight-zone">
             <!-- Ennemi -->
             <div class="fighter">
-                <div class="enemy"></div>
+                <div class="enemy">{{ mob.name }}</div>
                 <div class="hp">
                     <div class="hp-bar">
                         <div class="hp-fill enemy-hp" :style="{ width: enemyHpPercent + '%' }" />
@@ -22,7 +22,7 @@
 
             <!-- Joueur -->
             <div class="fighter">
-                <div class="player"></div>
+                <div class="player">{{ playerName }}</div>
                 <div class="hp">
                     <div class="hp-bar">
                         <div class="hp-fill player-hp" :style="{ width: playerHpPercent + '%' }" />
@@ -79,23 +79,6 @@ import type Mob from 'src/interfaces/Mob';
 import { useAuthStore } from 'stores/auth';
 const authStore = useAuthStore();
 
-/*
-TODO : mise à jour des informations du joueur dans les micro services dédiés : Inventaire, Heros.
-PUT Inventaire,
-PUT héros
-
-TODO : récupération des mobs
-GET Mob
-exemple :
-{
-    "id": 1,
-    "name": "Gobelin",
-    "pv": 100,
-    "atk": 15,
-    "drops": [101, 102, 103]
-}
- */
-
 const props = defineProps<{
   	mobs: number[];
 }>();
@@ -112,6 +95,7 @@ const winsAgainst: Record<Action, Action> = {
     choppe: 'defense',
     defense: 'attaque',
 };
+const playerName = ref("");
 
 function randomRobotAction(): Action {
     const index = Math.floor(Math.random() * actions.length);
@@ -156,7 +140,7 @@ const mob: Ref<Mob> = ref({
     "name": "Gobelin",
     "pv": 80,
     "atk": 15,
-    "drops": [101, 102, 103]
+    "drops": [1, 2, 3]
 });
 
 const enemyHpPercent = computed(() => (enemyHp.value / enemyMaxHp.value) * 100);
@@ -184,6 +168,7 @@ function emitCombatEnd() {
 onMounted(async () => {
     playerHp.value = parseInt(authStore.getHero.pv);
 	playerMaxHp.value = playerHp.value;
+    playerName.value = authStore.getHero.name;
 	await getMob();
 })
 
@@ -204,7 +189,7 @@ async function getMob() {
 		},
 	});
 	if(mobResponse.ok){
-		mob.value = await mobResponse.json(); 
+		mob.value = await mobResponse.json();
 	}
 	enemyHp.value = mob.value.pv;
 	enemyMaxHp.value = enemyHp.value;
@@ -216,7 +201,7 @@ async function endCombat(){
 		combatLost(hero);
 	}
 	else{
-		await combatWin(hero);
+		combatWin(hero);
 	}
 
 	authStore.setHero(hero);
@@ -224,8 +209,7 @@ async function endCombat(){
 }
 
 async function updateHero(hero: any){
-	console.log("up hero", hero);
-	const heroResponse = await fetch(`http://localhost:5004/heros`, {
+	await fetch(`http://localhost:5004/heros`, {
 		method: 'PUT',
 		headers: {
 			Authorization: `Bearer ${authStore.getAccessToken}`,
@@ -233,40 +217,21 @@ async function updateHero(hero: any){
 		},
 		body: JSON.stringify(hero)
 	});
-	const newHero = await heroResponse.json();
-	authStore.setHero(newHero);
+	authStore.setHero(hero);
 }
 
 function combatLost(hero: any){
 	hero.pv = playerMaxHp.value/4;
+    if(hero.pv < 10){
+        hero.pv = 20;
+    }
 }
 
-async function combatWin(hero: any){
+function combatWin(hero: any){
 	hero.pv = playerHp.value;
-	hero.xp += Math.floor(Math.random() * 50).toString();
-	hero.gold += Math.floor(Math.random() * 10).toString();
-
-	const inventory = mob.value.drops.map((itemId: number) => ({
-		id_item: itemId,
-		id_hero: hero.id,
-		amount: Math.floor(Math.random() * 3) + 1, // 1 → 3
-	}));
-
-	console.log("up inventory", inventory);
-	const inventoryResponse = await fetch(`http://localhost:5005/inventory`, {
-		method: 'POST',
-		headers: {
-			Authorization: `Bearer ${authStore.getAccessToken}`,
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(inventory)
-	});
-
-	if (!inventoryResponse.ok) {
-		console.error('Failed to save inventory');
-	}
+	hero.xp += 50;
+	hero.gold += 10;
 }
-
 
 </script>
 

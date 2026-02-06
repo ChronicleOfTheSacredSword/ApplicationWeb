@@ -41,7 +41,6 @@ async function useItem(item: Item) {
   if (choice && item) {
     const index: number = inventory.value.indexOf(item);
     item.amount = item.amount - 1;
-    console.log(item);
     if (item.amount > 0) {
       const inventoryItem = inventory.value.find((i) => i.id === item.id);
       if (!inventoryItem) return;

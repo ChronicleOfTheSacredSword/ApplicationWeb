@@ -103,7 +103,6 @@ async function submit() {
 
 async function createUser(user: any) {
     try{
-        console.log("Creating user:", user)
 
         const newUserResponse = await fetch("http://localhost:5000/user",{
             method: "POST",
@@ -113,7 +112,6 @@ async function createUser(user: any) {
 
         const newUser = await newUserResponse.json();
 
-        console.log("newUser", newUser);
         authStore.setUser(newUser);
 
         isNewUser.value = false
@@ -124,7 +122,6 @@ async function createUser(user: any) {
 
 async function loginUser(user: any) {
     try{
-        console.log("Login user:", user)
 
         const tokenResponse = await fetch("http://localhost:5001/login",{
             method: "POST",
@@ -134,11 +131,9 @@ async function loginUser(user: any) {
 
         const token = await tokenResponse.json();
 
-        console.log("token", token);
         authStore.setAccessToken(token.accessToken);
         authStore.setRefreshToken(token.refreshToken);
         authStore.setUser(token.user);
-        console.log(authStore.user, token.accessToken, authStore.refreshToken);
         await router.push("/hero");
     } catch(error) {
         throw new Error("Failed to authentificate your account")

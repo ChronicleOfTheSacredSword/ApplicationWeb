@@ -128,7 +128,6 @@ function handleKeydown(e: KeyboardEvent) {
 function checkRandomMonster() {
     if (Math.random() <= 0.9) {
         //alert('⚔️ Un monstre apparaît !')
-        console.log("Je trouve un monstre");
         showModal.value = true;
     }
 }
@@ -151,7 +150,6 @@ async function savePosition() {
 		body: JSON.stringify(newSave)
 	});
 	save.value = await response.json();
-	console.log("save", save.value)
 }
 
 // -------------------------
@@ -186,7 +184,6 @@ async function getSave() {
 			return;
 		}
 		save.value = await responseSave.json();
-		console.log("Save data:", save.value);
 	} catch (error) {
 		console.error("An error occurred while fetching save data:", error);
 	}
@@ -210,7 +207,6 @@ async function getMap(){
 			return;
 		}
 		map.value = await responseMap.json();
-		console.log("Save data:", map.value);
 	} catch (error) {
 		console.error("An error occurred while fetching save data:", error);
 	}
