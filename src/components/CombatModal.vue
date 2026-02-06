@@ -75,6 +75,20 @@
 import { NCard, NDivider, NButton } from 'naive-ui';
 import { ref, computed, watch } from 'vue';
 
+/*
+TODO : mise à jour des informations du joueur dans les micro services dédiés : Inventaire, Heros.
+
+TODO : récupération des mobs
+exemple :
+{
+  "id": 1,
+  "name": "Gobelin",
+  "pv": 100,
+  "atk": 15,
+  "drops": [101, 102, 103]
+}
+ */
+
 type Action = 'attaque' | 'defense' | 'choppe';
 
 const actions: Action[] = ['attaque', 'defense', 'choppe'];

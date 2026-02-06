@@ -14,28 +14,51 @@ import Hero from 'src/interfaces/Hero';
 const authStore = useAuthStore();
 
 const idHero = ref(null);
-const hero:any = ref({});
-const save:any = ref({});
+const hero: any = ref({});
+const save: any = ref({});
 
-onMounted(() => {
+onMounted(async () => {
   idHero.value = authStore.getHero;
-//TODO Récupérer Héros à afficher
-  hero.value = {
-    id_user: 1,
-    id: 0,
-    name: 'Richard',
-    heroClass: 'Barbare',
-    pv: '12',
-    atk: '10',
-    lvl: '1',
-    xp: '250',
-    gold: '500',
-  };
-  save.value = {
-    id: 1,
-    id_map: 1,
-    id_box: 15,
+  console.log('IDHERO :' + idHero.value);
+  //TODO Récupérer Héros à afficher
+  const response = await fetch(`http://localhost:5004/heros/${idHero.value}`).then((res) =>
+    res.json(),
+  );
+  hero.value = response;
+
+  /*
+  TODO : Appel au service de héros pour récupérer le héros séléctionner
+
+  Exemple :
+  {
+    "id_user": 1,
+    "id": 1,
+    "name": "Arthas",
+    "class": "Warrior",
+    "pv": "120",
+    "atk": "25",
+    "lvl": "5",
+    "xp": "1500",
+    "gold": "200"
   }
+   */
+
+  const responseSave = await fetch(`http://localhost:5003/save/${idHero.value}`).then((res) =>
+    res.json(),
+  );
+  save.value = responseSave;
+  console.log(responseSave);
+
+  /*
+  TODO : Appel au service la sauvegarde du héros
+
+  Exemple :
+{
+  "id": 1,
+  "id_map": 1,
+  "id_box": 1
+}
+ */
 });
 </script>
 

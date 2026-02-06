@@ -24,6 +24,13 @@ import { NButton, NModal } from 'naive-ui';
 import InventoryModal from 'components/InventoryModal.vue';
 import CombatModal from 'components/CombatModal.vue';
 
+/*
+ TODO : récupération des informations du héros et de la sauvegarde depuis WorldMap
+
+ TODO : Sauvegarde de la partie lors de l'appuie du bouton Sauvegarde
+*/
+
+
 interface Save {
   id: number;
   id_map: number;
