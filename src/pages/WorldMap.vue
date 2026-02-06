@@ -28,7 +28,7 @@ const hero = ref({
 const save = ref({
   id: 1,
   id_map: 1,
-  id_box: 36,
+  id_box: 15,
 });
 </script>
 
