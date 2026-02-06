@@ -24,10 +24,10 @@
       </n-form-item>
 
       <n-form-item label="Stats">
-        <n-input-number v-model:value="atk" :min="0" clearable>
+        <n-input-number v-model:value="atk" :min="1" clearable>
           <template #prefix> <strong>ATK</strong> </template>
         </n-input-number>
-        <n-input-number v-model:value="pv" :min="0" clearable>
+        <n-input-number v-model:value="pv" :min="1" clearable>
           <template #prefix> <strong>PV</strong> </template>
         </n-input-number>
         <n-input-number v-model:value="gold" :min="0" clearable>
@@ -53,8 +53,8 @@ const emit = defineEmits(['close-modal']);
 const heroName = ref('');
 const customClass = ref('');
 
-const atk = ref(0);
-const pv = ref(0);
+const atk = ref(1);
+const pv = ref(1);
 const gold = ref(0);
 
 const classValue = ref(null);
@@ -62,7 +62,7 @@ const options = [
   {
     label: 'Custom class',
     value: '0',
-    stats: { atk: 0, pv: 0, gold: 0 },
+    stats: { atk: 1, pv: 1, gold: 0 },
   },
   {
     label: 'Barbarian',
@@ -83,31 +83,40 @@ watch(classValue, (newValue) => {
 });
 
 async function addHero() {
-  // TODO: API call to create hero
+  const idUser = await authStore.getUser;
   const heroClass: string | null = classValue.value === '0' ? customClass.value : classValue.value;
   if (classValue.value === '0') {
     await fetch('http://localhost:5008/class', {
       method: 'POST',
       headers: new Headers({
         Authorization: 'Bearer ' + authStore.getAccessToken,
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       }),
       body: JSON.stringify({ name: heroClass, pv: pv.value, gold: gold.value, atk: atk.value }),
     }).then((res) => {
       console.log('Request complete! response:', res);
     });
   }
+  const newHero = {
+    id_user: idUser.id,
+    name: heroName.value,
+    class: heroClass,
+    pv: pv.value,
+    atk: atk.value,
+    lvl: '0',
+    xp: '0',
+    gold: gold.value,
+  };
   await fetch('http://localhost:5004/heros', {
     method: 'POST',
     headers: new Headers({
       Authorization: 'Bearer ' + authStore.getAccessToken,
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/json',
     }),
-    body: JSON.stringify({ name: heroClass, pv: pv.value, gold: gold.value, atk: atk.value }),
+    body: JSON.stringify(newHero),
   }).then((res) => {
     console.log('Request complete! response:', res);
   });
-  console.log(props.id_user, heroClass, atk.value, pv.value, gold.value);
   emit('close-modal');
 }
 </script>

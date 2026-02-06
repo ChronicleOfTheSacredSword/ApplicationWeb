@@ -23,27 +23,24 @@ const showModal = ref(false);
 const id_user = ref(1);
 const heroes = ref<Hero[]>([]);
 
-
 onMounted(async () => {
-  	await getHeroes()
-})
+  await getHeroes();
+});
 
-async function getHeroes(){
-	const heroesResponse = await fetch(`http://localhost:5004/heros/${authStore.getUser.id}`, {
-		method: "GET",
-		headers: {
-			"Authorization": `Bearer ${authStore.getAccessToken}`,
-			"Content-Type": "application/x-www-form-urlencoded"
-		}
-	})
-
-	heroes.value = await heroesResponse.json();
-	console.log("heroes", heroes.value);
+async function getHeroes() {
+  const heroesResponse = await fetch(`http://localhost:5004/heros/${authStore.getUser.id}`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${authStore.getAccessToken}`,
+      'Content-Type': 'application/json'
+    },
+  });
+  heroes.value = await heroesResponse.json();
 }
 
-function toggleCloseModal() {
+async function toggleCloseModal() {
   showModal.value = !showModal.value;
-  console.log(showModal.value);
+  await getHeroes();
 }
 </script>
 

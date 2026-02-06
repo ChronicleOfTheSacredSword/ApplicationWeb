@@ -50,7 +50,7 @@ async function useItem(item: Item) {
         method: 'PUT',
         headers: new Headers({
           Authorization: 'Bearer ' + authStore.getAccessToken,
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         }),
         body: JSON.stringify({ id_hero: props.id, id_item: item.id, amount: item.amount }),
       }).then((res) => {
@@ -62,7 +62,7 @@ async function useItem(item: Item) {
         method: 'DELETE',
         headers: new Headers({
           Authorization: 'Bearer ' + authStore.getAccessToken,
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         }),
       }).then((res) => {
         console.log('Request complete! response:', res);
@@ -78,7 +78,7 @@ onMounted(async () => {
     method: 'GET',
     headers: new Headers({
       Authorization: 'Bearer ' + authStore.getAccessToken,
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/json',
     }),
   }).then((res) => res.json());
   inventory.value = response;
