@@ -43,7 +43,7 @@
 
 <script setup lang="ts">
 import { NButton, NCard, NForm, NFormItem, NInput, NInputNumber, NSelect } from 'naive-ui';
-import { ref, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { useAuthStore } from 'stores/auth';
 
 const authStore = useAuthStore();
@@ -58,16 +58,11 @@ const pv = ref(1);
 const gold = ref(0);
 
 const classValue = ref(null);
-const options = [
+let options = [
   {
-    label: 'Custom class',
+    label: 'Classe personnalisée',
     value: '0',
     stats: { atk: 1, pv: 1, gold: 0 },
-  },
-  {
-    label: 'Barbarian',
-    value: '1',
-    stats: { atk: 40, pv: 40, gold: 50 },
   },
 ];
 
@@ -84,18 +79,23 @@ watch(classValue, (newValue) => {
 
 async function addHero() {
   const idUser = await authStore.getUser;
-  const heroClass: string | null = classValue.value === '0' ? customClass.value : classValue.value;
+  const heroClass: number = Number.parseInt(classValue.value);
   if (classValue.value === '0') {
-    await fetch('http://localhost:5008/class', {
+    const response = await fetch('http://localhost:5008/class', {
       method: 'POST',
       headers: new Headers({
         Authorization: 'Bearer ' + authStore.getAccessToken,
         'Content-Type': 'application/json',
       }),
-      body: JSON.stringify({ name: heroClass, pv: pv.value, gold: gold.value, atk: atk.value }),
-    }).then((res) => {
-      console.log('Request complete! response:', res);
-    });
+      body: JSON.stringify({
+        id_hero: 0,
+        name: customClass.value,
+        pv: pv.value,
+        gold: gold.value,
+        atk: atk.value,
+      }),
+    }).then((res) => res.json());
+    console.log(response);
   }
   const newHero = {
     id_user: idUser.id,
@@ -119,6 +119,24 @@ async function addHero() {
   });
   emit('close-modal');
 }
+
+onMounted(async () => {
+  const response = await fetch('http://localhost:5008/class', {
+    method: 'GET',
+    headers: new Headers({
+      Authorization: 'Bearer ' + authStore.getAccessToken,
+      'Content-Type': 'application/json',
+    }),
+  }).then((res) => res.json());
+  console.log(response);
+  for (const item of response) {
+    options.push({
+      label: item.name,
+      value: item.id,
+      stats: { atk: item.atk, pv: item.pv, gold: item.gold },
+    });
+  }
+});
 </script>
 
 <style scoped>
