@@ -61,7 +61,7 @@ import { ref, computed } from "vue"
 import { useRouter } from "vue-router"
 import { useAuthStore } from 'src/stores/auth'
 
-const authStore = useAuthStore()
+const authStore = useAuthStore();
 const router = useRouter();
 
 const isNewUser = ref(false);
@@ -135,8 +135,8 @@ async function loginUser(user: any) {
         const token = await tokenResponse.json();
 
         console.log("token", token);
-        authStore.setAccessToken(token.access);
-        authStore.setRefreshToken(token.refresh);
+        authStore.setAccessToken(token.accessToken);
+        authStore.setRefreshToken(token.refreshToken);
 
         await router.push("/hero");
     } catch(error) {
