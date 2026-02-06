@@ -5,43 +5,41 @@
       <HeroCreationForm :id_user="id_user" @close-modal="toggleCloseModal" />
     </n-modal>
     <n-button type="info" @click="showModal = true"> Add hero </n-button>
-    <HeroEntry v-for="hero in heroes" v-bind:key="hero.id" :hero="hero" />
+    <HeroEntry v-for="hero in heroes" :key="hero.id ?? hero.name" :hero="hero" />
   </main>
 </template>
 
 <script setup lang="ts">
 import TitleFrame from '../components/TitleFrame.vue';
 import HeroEntry from '../components/HeroEntry.vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { NButton, NModal } from 'naive-ui';
 import HeroCreationForm from 'components/HeroCreationForm.vue';
+import { useAuthStore } from 'src/stores/auth';
+import type Hero from 'src/interfaces/Hero';
 
+const authStore = useAuthStore();
 const showModal = ref(false);
 const id_user = ref(1);
-const heroes = ref([
-  {
-    id_user: 1,
-    id: 0,
-    name: 'richard',
-    heroClass: 'Barbarian',
-    pv: '12',
-    atk: '10',
-    lvl: '1',
-    xp: '250',
-    gold: '500',
-  },
-  {
-    id_user: 1,
-    id: 1,
-    name: 'bruno',
-    heroClass: 'Assassin',
-    pv: '2',
-    atk: '20',
-    lvl: '2',
-    xp: '50',
-    gold: '300',
-  },
-]);
+const heroes = ref<Hero[]>([]);
+
+
+onMounted(async () => {
+  	await getHeroes()
+})
+
+async function getHeroes(){
+	const heroesResponse = await fetch(`http://localhost:5004/heros/${authStore.getUser.id}`, {
+		method: "GET",
+		headers: {
+			"Authorization": `Bearer ${authStore.getAccessToken}`,
+			"Content-Type": "application/x-www-form-urlencoded"
+		}
+	})
+
+	heroes.value = await heroesResponse.json();
+	console.log("heroes", heroes.value);
+}
 
 function toggleCloseModal() {
   showModal.value = !showModal.value;

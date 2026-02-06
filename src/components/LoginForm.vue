@@ -61,7 +61,7 @@ import { ref, computed } from "vue"
 import { useRouter } from "vue-router"
 import { useAuthStore } from 'src/stores/auth'
 
-const authStore = useAuthStore()
+const authStore = useAuthStore();
 const router = useRouter();
 
 const isNewUser = ref(false);

@@ -19,7 +19,7 @@ const save:any = ref({});
 
 onMounted(() => {
   idHero.value = authStore.getHero;
-  //TODO Récupérer Héros à afficher
+//TODO Récupérer Héros à afficher
   hero.value = {
     id_user: 1,
     id: 0,
