@@ -135,8 +135,8 @@ async function loginUser(user: any) {
         const token = await tokenResponse.json();
 
         console.log("token", token);
-        authStore.setAccessToken(token.access);
-        authStore.setRefreshToken(token.refresh);
+        authStore.setAccessToken(token.accessToken);
+        authStore.setRefreshToken(token.refreshToken);
 
         await router.push("/hero");
     } catch(error) {

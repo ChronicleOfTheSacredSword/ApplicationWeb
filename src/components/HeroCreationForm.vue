@@ -44,7 +44,9 @@
 <script setup lang="ts">
 import { NButton, NCard, NForm, NFormItem, NInput, NInputNumber, NSelect } from 'naive-ui';
 import { ref, watch } from 'vue';
+import { useAuthStore } from 'stores/auth';
 
+const authStore = useAuthStore();
 const props = defineProps(['id_user']);
 const emit = defineEmits(['close-modal']);
 
@@ -80,15 +82,32 @@ watch(classValue, (newValue) => {
   }
 });
 
-function addHero() {
+async function addHero() {
   // TODO: API call to create hero
-  console.log(heroName.value);
+  const heroClass: string | null = classValue.value === '0' ? customClass.value : classValue.value;
   if (classValue.value === '0') {
-    // TODO: API call to create class
-    console.log(props.id_user, customClass.value, atk.value, pv.value, gold.value);
-  } else {
-    console.log(props.id_user, classValue.value, atk.value, pv.value, gold.value);
+    await fetch('http://localhost:5008/class', {
+      method: 'POST',
+      headers: new Headers({
+        Authorization: 'Bearer ' + authStore.getAccessToken,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }),
+      body: JSON.stringify({ name: heroClass, pv: pv.value, gold: gold.value, atk: atk.value }),
+    }).then((res) => {
+      console.log('Request complete! response:', res);
+    });
   }
+  await fetch('http://localhost:5004/heros', {
+    method: 'POST',
+    headers: new Headers({
+      Authorization: 'Bearer ' + authStore.getAccessToken,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }),
+    body: JSON.stringify({ name: heroClass, pv: pv.value, gold: gold.value, atk: atk.value }),
+  }).then((res) => {
+    console.log('Request complete! response:', res);
+  });
+  console.log(props.id_user, heroClass, atk.value, pv.value, gold.value);
   emit('close-modal');
 }
 </script>
