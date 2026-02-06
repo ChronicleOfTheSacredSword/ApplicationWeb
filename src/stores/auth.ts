@@ -6,7 +6,7 @@ export const useAuthStore = defineStore('auth', {
     user: null as any,
     hero: null as any,
     accessToken: null as string | null,
-    refreshToken: null as string | null,
+    refreshToken: null as string | null
   }),
 
   getters: {
