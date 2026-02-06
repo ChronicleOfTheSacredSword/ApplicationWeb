@@ -77,8 +77,11 @@ import { ref, computed, watch } from 'vue';
 
 /*
 TODO : mise à jour des informations du joueur dans les micro services dédiés : Inventaire, Heros.
+PUT Inventaire,
+PUT héros
 
 TODO : récupération des mobs
+GET Mob
 exemple :
 {
   "id": 1,

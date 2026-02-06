@@ -28,6 +28,7 @@ onMounted(async () => {
 
   /*
   TODO : Appel au service de héros pour récupérer le héros séléctionner
+  GET Heros
 
   Exemple :
   {
@@ -51,6 +52,7 @@ onMounted(async () => {
 
   /*
   TODO : Appel au service la sauvegarde du héros
+  GET Save
 
   Exemple :
 {
