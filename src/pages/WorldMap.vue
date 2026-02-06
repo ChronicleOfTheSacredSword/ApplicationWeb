@@ -14,9 +14,7 @@ import Hero from 'src/interfaces/Hero';
 const authStore = useAuthStore();
 
 const idHero = ref(null);
-
 const hero:any = ref({});
-
 const save:any = ref({});
 
 onMounted(() => {
@@ -33,12 +31,11 @@ onMounted(() => {
     xp: '250',
     gold: '500',
   };
-  //TODO: récupérer une sauvegarde à charger
   save.value = {
     id: 1,
     id_map: 1,
-    id_box: 36,
-  };
+    id_box: 15,
+  }
 });
 </script>
 
