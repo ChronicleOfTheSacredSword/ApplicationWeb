@@ -21,12 +21,12 @@ const router = useRouter();
 
 // :to="{ name: 'WorldMap', params: { id: props.hero.id } }"
 const props = defineProps<{
-  hero: Hero;
+  	hero: Hero;
 }>();
 
 async function goToSave() {
-  authStore.setHero(props.hero.id);
-  await router.push('/worldmap');
+	authStore.setHero(props.hero);
+	await router.push('/worldmap');
 }
 </script>
 
