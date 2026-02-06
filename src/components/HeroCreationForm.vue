@@ -95,7 +95,6 @@ async function addHero() {
         atk: atk.value,
       }),
     }).then((res) => res.json());
-    console.log(response);
   }
   const newHero = {
     id_user: idUser.id,

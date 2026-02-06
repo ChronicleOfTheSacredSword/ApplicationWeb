@@ -32,7 +32,7 @@ async function getHeroes() {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${authStore.getAccessToken}`,
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
   });
   heroes.value = await heroesResponse.json();

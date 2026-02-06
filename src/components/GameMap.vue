@@ -32,7 +32,7 @@ const authStore = useAuthStore();
 const save: Ref<Save> = ref({
     id: 0,
 	id_map: 0,
-	id_box: 0,  
+	id_box: 0,
 });
 
 const map: Ref<Map> = ref({
@@ -197,14 +197,14 @@ async function getSave() {
 		Exemple :
 		{
 		"id": 1,
-		"id_map": 1,
+		"id_map": A1,
 		"id_box": 1
 		}*/
 }
 
 async function getMap(){
 	try {
-		const responseMap = await fetch(`http://localhost:5007/map/${save.value.id}`);
+		const responseMap = await fetch(`http://localhost:5007/map/${save.value.id_map}`);
 		if (!responseMap.ok) {
 			console.error(`No map.`);
 			return;

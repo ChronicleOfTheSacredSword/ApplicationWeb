@@ -73,7 +73,6 @@ async function useItem(item: Item) {
 }
 
 onMounted(async () => {
-  console.log(authStore.getAccessToken);
   const response = await fetch(`http://localhost:5005/inventory/${props.id}`, {
     method: 'GET',
     headers: new Headers({

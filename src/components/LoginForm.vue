@@ -138,7 +138,7 @@ async function loginUser(user: any) {
         authStore.setAccessToken(token.accessToken);
         authStore.setRefreshToken(token.refreshToken);
         authStore.setUser(token.user);
-
+        console.log(authStore.user, token.accessToken, authStore.refreshToken);
         await router.push("/hero");
     } catch(error) {
         throw new Error("Failed to authentificate your account")
